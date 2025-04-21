@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Outlet } from 'react-router-dom'
+import { Link, Outlet } from 'react-router-dom'
 import './Css/App.css'
 import {supabase} from "./client.js"
 
@@ -66,15 +66,16 @@ function App() {
       </div>
     <div className="posts-container">
     {posts && posts.length > 0 ? posts.map((post) => (
-      <div className="post" key={post.id}>
-        <p>Posted {getFriendlyTimeAgo(post.created_at)}</p>
-        <h4>{post.Title}</h4>
-        <p>{post.Upvotes} upvotes</p>
-      </div>
+      <Link to={`/post/${post.id}`}>
+        <div className="post" key={post.id}>
+          <p>Posted {getFriendlyTimeAgo(post.created_at)}</p>
+          <h4>{post.Title}</h4>
+          <p>{post.Upvotes} upvotes</p>
+        </div>
+      </Link>
     )) :
 
     <div>
-
     </div>
     
     }

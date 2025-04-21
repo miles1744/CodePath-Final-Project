@@ -38,6 +38,12 @@
     font-weight: 300;
 }
 
+.header-links p:hover {
+    transition: 0.5s;
+    color: #67AE6E;
+}
+
+
 .Create-Form-Container {
     display: flex;
     flex-direction: column;
@@ -129,7 +135,7 @@ a {
 
 .order-btn:hover{
     transition: 0.5s;
-    border-width: 2px;
+    border-width: 1px;
 }
 
 .posts-container{
@@ -147,6 +153,13 @@ a {
     background-color: #E1EEBC;
     padding: 10px;
     color: #328E6E;
+    border-radius: 15px;
+    border: 1px solid #90C67C;
+}
+
+.post:hover {
+    transition: 0.5s;
+    border-width: 2px;
 }
 
 .post p {
