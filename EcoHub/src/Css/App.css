@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+
+.header {
+    background-color: #E1EEBC;
+    color: #328E6E;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 30px;
+    text-align: center;
+
+}
+
+.search-bar {
+    width: 400px;
+    border-radius: 30px;
+    border: 1px solid #67AE6E;
+    background-color: #E1EEBC;
+    color: #328E6E;
+    padding-left: 5px;
+    font-size: 1em;
+}
+
+.search-bar::placeholder{
+    color: #328E6E;
+}
+
+.header-links{
+    display: flex;
+    gap: 30px;
+    width: 400px;
+    align-items: center;
+    font-weight: 300;
+}
+
+.Create-Form-Container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh;
+    background-color: #90C67C;
+}
+
+.Create-Form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: #E1EEBC;
+}
+
+.input-bar{
+    width: 400px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #90C67C;
+    color: #90C67C;
+}
+
+.input-bar::placeholder{
+    color: #90C67C;
+}
+
+.post-btn  {
+    width: 120px;
+    padding: 7px;
+    font-size: 18px;
+    background-color: #E1EEBC;
+    color: #67AE6E;
+    border: 1px solid #90C67C;
+    border-radius: 5px;
+}
+
+.post-btn:hover{
+    border-width: 2px;
+    transition: 0.5s;
+}
+
+.text-area-content {
+    width: 400px;
+    font-size: 12px;
+    height: 150px;
+    border: 1px solid #90C67C;
+    border-radius: 10px;
+    padding: 5px;
+    color: #90C67C;
+}
+
+.text-area-content::placeholder{
+    color: #90C67C;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  a:hover{
+      text-decoration: none;
+      color: inherit;
+  }
+.Sort-btn-container{
+    position: relative;
+    left: 20px;
+    top: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    color: #328E6E;
+}
+
+.order-btn{
+    padding: 7px;
+    color: #328E6E;
+    background-color: #E1EEBC;
+    border: 0px solid #90C67C;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.order-btn:hover{
+    transition: 0.5s;
+    border-width: 2px;
+}

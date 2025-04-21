@@ -1,12 +1,20 @@
 import { useState } from 'react'
-import './App.css'
-import Header from "./Components/Header.jsx"
+import { Outlet } from 'react-router-dom'
+import './Css/App.css'
 
 function App() {
 
 
   return (
-   <Header />
+    <>
+      <Outlet />
+      <div className="Sort-btn-container">
+        <p>Order by: </p>
+        <button className="order-btn">Newest</button>
+        <button className="order-btn">Most Popular</button>
+      </div>
+   
+    </>
   )
 }
 

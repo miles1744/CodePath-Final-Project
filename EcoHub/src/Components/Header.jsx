@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { Link } from "react-router-dom";
 
 const Header = () => {
     const [searchTerm, setSearchTerm] = useState("");
@@ -14,8 +15,8 @@ const Header = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <div className="header-links">
-                    <p>Home</p>
-                    <p>Create New Post</p>
+                   <Link to={"/"}><p>Home</p></Link>
+                    <Link to={"/Create"}><p>Create New Post</p></Link>
                 </div>
             </div>
         </>
