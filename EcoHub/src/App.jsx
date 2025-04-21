@@ -4,7 +4,7 @@ import './Css/App.css'
 import {supabase} from "./client.js"
 
 function App() {
-  const [post, setPosts] = useState([]);
+  const [posts, setPosts] = useState([]);
 
   useEffect(() => {
       const fetchCrewmates = async () => {
@@ -12,7 +12,7 @@ function App() {
           .from("Posts")
           .select()
           .order("created_at", { ascending: true })
-      setCrewmates(data);
+          setPosts(data);
       }
       fetchCrewmates()
   },[])
@@ -25,7 +25,17 @@ function App() {
         <button className="order-btn">Newest</button>
         <button className="order-btn">Most Popular</button>
       </div>
+    {posts && posts.length > 0 ? posts.map((post) => (
+      <div>
 
+      </div>
+    )) :
+
+    <div>
+      
+    </div>
+    
+    }
       
    
     </>
