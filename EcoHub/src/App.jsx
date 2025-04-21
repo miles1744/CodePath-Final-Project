@@ -12,6 +12,7 @@ function App() {
         <p>Order by: </p>
         <button className="order-btn">Newest</button>
         <button className="order-btn">Most Popular</button>
+        
       </div>
    
     </>
