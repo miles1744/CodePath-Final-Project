@@ -1,13 +1,33 @@
 import { useState } from "react"
 import { Outlet } from 'react-router-dom'
 import "../Css/App.css"
+import { supabase } from "../client.js"
+
 
 
 const CreateAPost = () => {
+
+    
+
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [url, setURL] = useState("");
 
+    const createPost = async (event) => {
+        event.preventDefault();
+
+        await supabase
+            .from("Posts")
+            .insert({
+                Title: {title},
+                Content: {content},
+                URL: {url},
+                Upvotes: 0
+            })
+            .select();
+
+        window.location = "/"
+    }
 
 
     return(
@@ -18,7 +38,7 @@ const CreateAPost = () => {
                     <input className="input-bar" type="text" value={title} placeholder="Title" onChange={(e) => {setTitle(e.target.value)}}/>
                     <textarea className="text-area-content" value={content} placeholder="Content (Optional)" onChange={(e) => {setContent(e.target.value)}}> </textarea>
                     <input type="text" className="input-bar" value={url} placeholder="Image URL (Optional)" onChange={(e) => {setURL(e.target.value)}}/>
-                    <button className="post-btn"type="submit">Create Post</button>
+                    <button className="post-btn"type="submit" onSubmit={createPost}>Create Post</button>
                 </form>
             </div>
         </>
