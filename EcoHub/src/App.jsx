@@ -72,7 +72,11 @@ function App() {
   }, [searchTerm, posts]);
 
   const handleNew = () => {
-    setFilteredList(post)
+    setFilteredList(posts)
+  }
+
+  const handlePopular = () => {
+    setFilteredList(posts.sort((postA, PostB) => postA.Upvotes - postB.Upvotes))
   }
 
   return (
@@ -80,8 +84,8 @@ function App() {
       <Outlet context={{searchTerm, setSearchTerm}}/>
       <div className="Sort-btn-container">
         <p>Order by: </p>
-        <button className="order-btn" onClick={}>Newest</button>
-        <button className="order-btn" onClick={}>Most Popular</button>
+        <button className="order-btn" onClick={handleNew}>Newest</button>
+        <button className="order-btn" onClick={handlePopular}>Most Popular</button>
       </div>
     <div className="posts-container">
     {filteredList && filteredList.length > 0 ? filteredList.map((post, index) => (
