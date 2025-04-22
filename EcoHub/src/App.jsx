@@ -71,13 +71,17 @@ function App() {
     }
   }, [searchTerm, posts]);
 
+  const handleNew = () => {
+    setFilteredList(post)
+  }
+
   return (
     <>
       <Outlet context={{searchTerm, setSearchTerm}}/>
       <div className="Sort-btn-container">
         <p>Order by: </p>
-        <button className="order-btn">Newest</button>
-        <button className="order-btn">Most Popular</button>
+        <button className="order-btn" onClick={}>Newest</button>
+        <button className="order-btn" onClick={}>Most Popular</button>
       </div>
     <div className="posts-container">
     {filteredList && filteredList.length > 0 ? filteredList.map((post, index) => (
