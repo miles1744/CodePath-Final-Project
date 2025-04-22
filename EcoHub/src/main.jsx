@@ -6,6 +6,7 @@ import CreateAPost from './Components/CreateAPost.jsx'
 import Header from './Components/Header.jsx';
 import PostPage from './Components/PostPage.jsx';
 
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <BrowserRouter>

@@ -65,9 +65,9 @@ function App() {
         <button className="order-btn">Most Popular</button>
       </div>
     <div className="posts-container">
-    {posts && posts.length > 0 ? posts.map((post) => (
-      <Link to={`/post/${post.id}`}>
-        <div className="post" key={post.id}>
+    {posts && posts.length > 0 ? posts.map((post, index) => (
+      <Link to={`/post/${post.id}`} key={index}>
+        <div className="post" >
           <p>Posted {getFriendlyTimeAgo(post.created_at)}</p>
           <h4>{post.Title}</h4>
           <p>{post.Upvotes} upvotes</p>
