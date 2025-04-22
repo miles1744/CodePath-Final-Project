@@ -60,8 +60,16 @@ function App() {
   },[])
 
   useEffect(() => {
-    
-  },[searchTerm])
+    if (searchTerm === "") {
+      setFilteredList(posts);
+    } else {
+      setFilteredList(
+        posts.filter((post) =>
+          post.Title.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+  }, [searchTerm, posts]);
 
   return (
     <>
@@ -72,7 +80,7 @@ function App() {
         <button className="order-btn">Most Popular</button>
       </div>
     <div className="posts-container">
-    {posts && posts.length > 0 ? posts.map((post, index) => (
+    {filteredList && filteredList.length > 0 ? filteredList.map((post, index) => (
       <Link to={`/post/${post.id}`} key={index}>
         <div className="post" >
           <p>Posted {getFriendlyTimeAgo(post.created_at)}</p>
