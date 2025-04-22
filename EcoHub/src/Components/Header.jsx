@@ -1,8 +1,9 @@
-import { useState } from "react"
-import { Link } from "react-router-dom";
+import { Link, useOutletContext } from "react-router-dom";
 
 const Header = () => {
-    const [searchTerm, setSearchTerm] = useState("");
+    
+    const { searchTerm, setSearchTerm } = useOutletContext();
+
 
     return (
         <>

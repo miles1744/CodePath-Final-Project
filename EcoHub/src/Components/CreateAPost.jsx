@@ -32,7 +32,7 @@ const CreateAPost = () => {
 
     return(
         <>
-            <Outlet/>
+            <Outlet />
             <div className="Create-Form-Container">
                 <form className="Create-Form" onSubmit={createPost}>
                     <input className="input-bar" type="text" value={title} placeholder="Title" onChange={(e) => {setTitle(e.target.value)}}/>

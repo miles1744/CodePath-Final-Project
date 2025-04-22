@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Outlet, useParams } from 'react-router-dom'
+import { Link, Outlet, useParams } from 'react-router-dom'
 import "../Css/App.css"
 import { supabase } from "../client.js"
 
@@ -140,13 +140,13 @@ const postPage = () =>{
 
     return(
         <>
-            <Outlet/>
+            <Outlet />
             <div className="post-page-container">
                 <div className="post-page">
                     <div className="title">
                     <p>{getFriendlyTimeAgo(post.created_at)}</p>
                     <div className="button-container">
-                        <button className="edit-btn">Edit</button>
+                        <Link to={`/Update/${post.id}`}><button className="edit-btn">Edit</button></Link>
                         <button className="delete-btn" onClick={deletePost}>Delete</button>
                     </div>
                     </div>

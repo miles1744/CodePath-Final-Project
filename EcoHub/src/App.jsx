@@ -3,8 +3,11 @@ import { Link, Outlet } from 'react-router-dom'
 import './Css/App.css'
 import {supabase} from "./client.js"
 
+
 function App() {
   const [posts, setPosts] = useState([]);
+  const [filteredList, setFilteredList] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const getFriendlyTimeAgo = (createdAt) => {
     const { seconds, minutes, hours, days, months, years } = getTimeSincePost(createdAt);
@@ -56,9 +59,13 @@ function App() {
       fetchCrewmates()
   },[])
 
+  useEffect(() => {
+    
+  },[searchTerm])
+
   return (
     <>
-      <Outlet />
+      <Outlet context={{searchTerm, setSearchTerm}}/>
       <div className="Sort-btn-container">
         <p>Order by: </p>
         <button className="order-btn">Newest</button>
