@@ -270,3 +270,7 @@ img {
     color: white;
     background-color: red;
   }
+
+  .active {
+    background-color: #19520356;
+  }

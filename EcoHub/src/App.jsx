@@ -8,6 +8,9 @@ function App() {
   const [posts, setPosts] = useState([]);
   const [filteredList, setFilteredList] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
+  const [newestButtonActive, setNewestButtonActive] = useState(true)
+  const [popularButtonActive, setPopularButtonActive] = useState(false)
+
 
   const getFriendlyTimeAgo = (createdAt) => {
     const { seconds, minutes, hours, days, months, years } = getTimeSincePost(createdAt);
@@ -73,10 +76,15 @@ function App() {
 
   const handleNew = () => {
     setFilteredList(posts)
+    setNewestButtonActive(true)
+    setPopularButtonActive(false)
   }
 
   const handlePopular = () => {
-    setFilteredList(posts.sort((postA, postB) => postB.Upvotes - postA.Upvotes))
+    const sorted = [...posts].sort((postA, postB) => postB.Upvotes - postA.Upvotes);
+    setFilteredList(sorted);
+    setNewestButtonActive(false);
+    setPopularButtonActive(true);
   }
 
   return (
@@ -84,8 +92,8 @@ function App() {
       <Outlet context={{searchTerm, setSearchTerm}}/>
       <div className="Sort-btn-container">
         <p>Order by: </p>
-        <button className="order-btn" onClick={handleNew}>Newest</button>
-        <button className="order-btn" onClick={handlePopular}>Most Popular</button>
+        <button className={`order-btn ${newestButtonActive === true ? "active" : ""}`} onClick={handleNew}>Newest</button>
+        <button className= {`order-btn ${popularButtonActive === true ? "active" : ""}`} onClick={handlePopular}>Most Popular</button>
       </div>
     <div className="posts-container">
     {filteredList && filteredList.length > 0 ? filteredList.map((post, index) => (
