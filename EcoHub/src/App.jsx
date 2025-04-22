@@ -76,7 +76,7 @@ function App() {
   }
 
   const handlePopular = () => {
-    setFilteredList(posts.sort((postA, PostB) => postA.Upvotes - postB.Upvotes))
+    setFilteredList(posts.sort((postA, postB) => postB.Upvotes - postA.Upvotes))
   }
 
   return (
