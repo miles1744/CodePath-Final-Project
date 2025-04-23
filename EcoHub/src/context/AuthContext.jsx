@@ -16,7 +16,7 @@ export const AuthContextProvider = ({children}) => {
     
 
     if(error) {
-        console.error("there was a problem signing up:", error);
+        console.error("there was a problem signing up:");
         return {success: false, error}
     }
     return {success: true, data}
@@ -29,14 +29,14 @@ export const AuthContextProvider = ({children}) => {
                 password: password,
             });
             if(error){
-                console.error("sign in error occurred: ", error)
+                console.error("sign in error occurred:")
                 return{ success: false, error: error.message }     
             }
-            console.log("sign-in success", data)
+            console.log("sign-in success")
             return { success: true, data}
         }
         catch(error) {
-            console.error("An error occurred: ", error)
+            console.error("An error occurred" )
         }
     }
 
@@ -54,7 +54,7 @@ export const AuthContextProvider = ({children}) => {
     const signOut = () => {
         const {error} = supabase.auth.signOut();
         if(error){
-            console.error("there was an error: ", error)
+            console.error("there was an error")
         }
     }
 

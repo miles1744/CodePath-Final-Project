@@ -10,7 +10,6 @@ const SignUp = () => {
 
     const {session, signUpNewUser} = UserAuth()
     const navigate = useNavigate()
-    console.log(session)
 
     const handleSignUp = async (e) =>
     {
