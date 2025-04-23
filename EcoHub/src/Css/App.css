@@ -274,3 +274,14 @@ img {
   .active {
     background-color: #19520356;
   }
+
+  .signup-link{
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.2s ease;
+  }
+
+  .signup-link:hover{
+    text-decoration: underline;
+    color: #0077cc;
+  }

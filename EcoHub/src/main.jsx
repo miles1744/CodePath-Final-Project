@@ -7,29 +7,40 @@ import Header from './Components/Header.jsx';
 import PostPage from './Components/PostPage.jsx';
 import UpdateAPost from './Components/UpdateAPost.jsx';
 import SimpleHeader from './Components/SimplHeader.jsx';
+import SignIn from "./Components/SignIn.jsx"
+import SignUp from "./Components/Signup.jsx"
+import { AuthContextProvider } from './context/AuthContext.jsx';
+
+
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <BrowserRouter>
-      <Routes>
+    <AuthContextProvider>
+      <BrowserRouter>
+        <Routes>
 
-        <Route path="/" element={<App />}>
-          <Route index={true} element={<Header />} />
-        </Route>
+          <Route path="/Home" element={<App />}>
+            <Route index={true} element={<Header />} />
+          </Route>
 
-        <Route path="/Create" element={<CreateAPost/>}>
-          <Route index={true} element={<SimpleHeader />} />
-        </Route>
+          <Route path="/Create" element={<CreateAPost/>}>
+            <Route index={true} element={<SimpleHeader />} />
+          </Route>
 
-        <Route path="/Post/:id" element={<PostPage/>}>
-          <Route index={true} element={<SimpleHeader />} />
-        </Route>
+          <Route path="/Post/:id" element={<PostPage/>}>
+            <Route index={true} element={<SimpleHeader />} />
+          </Route>
 
-        <Route path="/Update/:id" element={<UpdateAPost />}>
-          <Route index={true} element={<SimpleHeader />} />
-        </Route>
+          <Route path="/Update/:id" element={<UpdateAPost />}>
+            <Route index={true} element={<SimpleHeader />} />
+          </Route>
 
-      </Routes>
-    </BrowserRouter>
+          <Route path="/signin" element={<SignIn />} />
+          
+          <Route path="/" element={<SignUp />} />
+
+        </Routes>
+      </BrowserRouter>
+    </AuthContextProvider>
   </StrictMode>,
 )
