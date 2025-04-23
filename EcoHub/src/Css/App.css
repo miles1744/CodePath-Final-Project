@@ -285,3 +285,103 @@ img {
     text-decoration: underline;
     color: #2a6a54;
   }
+
+.signup-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items:  center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #90C67C;
+}
+
+.signup-container input{
+    width: 250px;
+    height: 30px;
+    background-color: #E1EEBC;
+    color: #328E6E;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+
+.signup-container input::placeholder{
+    color: #328E6E;
+}
+
+.signup-container h1{
+    color: #328E6E;
+}
+
+.signup-container h2{
+    color: #328E6E;
+}
+
+.signup-container button{
+    padding: 10px;
+    color: #328E6E;
+    background-color: #E1EEBC;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+}
+
+
+
+
+
+.signin-container{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    justify-content: center;
+    align-items:  center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #90C67C;
+}
+
+.signin-container input{
+    width: 250px;
+    height: 30px;
+    background-color: #E1EEBC;
+    color: #328E6E;
+    border-radius: 5px;
+    border: none;
+    padding: 5px;
+}
+
+.signin-container input::placeholder{
+    color: #328E6E;
+}
+
+.signin-container h1{
+    color: #328E6E;
+}
+
+.signin-container h2{
+    color: #328E6E;
+}
+
+.signin-container button{
+    padding: 10px;
+    color: #328E6E;
+    background-color: #E1EEBC;
+    font-size: 14px;
+    border: none;
+    border-radius: 5px;
+}
+
+.footer-container button{
+    color: #E1EEBC;
+    background-color: #328E6E;
+    border: none;
+    padding: 10px;
+    border-radius: 7px;
+}
+
+.footer-container button:hover{
+    box-shadow: 2px 4px 8px rgba(144, 198, 124, 0.2);
+}

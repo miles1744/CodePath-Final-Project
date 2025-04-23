@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { Link, Outlet } from 'react-router-dom'
 import './Css/App.css'
 import {supabase} from "./client.js"
-import Footer from './Components/Footer.jsx';
 
 
 
@@ -113,7 +112,6 @@ function App() {
     
     }
     </div> 
-    <Footer />  
     </>
   )
 }

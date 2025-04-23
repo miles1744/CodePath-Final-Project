@@ -10,6 +10,7 @@ import SimpleHeader from './Components/SimplHeader.jsx';
 import SignIn from "./Components/SignIn.jsx"
 import SignUp from "./Components/Signup.jsx"
 import { AuthContextProvider } from './context/AuthContext.jsx';
+import PrivateRoute from './Components/PrivateRoute.jsx';
 
 
 createRoot(document.getElementById('root')).render(
@@ -18,21 +19,24 @@ createRoot(document.getElementById('root')).render(
       <BrowserRouter>
         <Routes>
 
-          <Route path="/Home" element={<App />}>
-            <Route index={true} element={<Header />} />
-          </Route>
+          
+            <Route path="/Home" element={<PrivateRoute><App /></PrivateRoute>}>
+              <Route index={true} element={<Header />} />
+            </Route>        
 
-          <Route path="/Create" element={<CreateAPost/>}>
+          <Route path="/Create" element={<PrivateRoute><CreateAPost/></PrivateRoute>}>
             <Route index={true} element={<SimpleHeader />} />
           </Route>
 
-          <Route path="/Post/:id" element={<PostPage/>}>
+          <Route path="/Post/:id" element={<PrivateRoute><PostPage/></PrivateRoute>}>
             <Route index={true} element={<SimpleHeader />} />
           </Route>
 
-          <Route path="/Update/:id" element={<UpdateAPost />}>
-            <Route index={true} element={<SimpleHeader />} />
-          </Route>
+          
+            <Route path="/Update/:id" element={<PrivateRoute><UpdateAPost /></PrivateRoute>}>
+              <Route index={true} element={<SimpleHeader />} />
+            </Route>
+          
 
           <Route path="/signin" element={<SignIn />} />
           

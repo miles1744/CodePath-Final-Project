@@ -2,7 +2,6 @@ import { useState, useEffect } from "react"
 import { Outlet, useParams, Link } from 'react-router-dom'
 import "../Css/App.css"
 import { supabase } from "../client.js"
-import Footer from './Footer.jsx';
 
 
 
@@ -20,7 +19,7 @@ const UpdateAPost = () => {
         .update({ Title: post.Title, Content: post.Content, URL: post.URL})
         .eq("id", id)
 
-        window.location = "/"
+        window.location = "/Home"
     }
 
     useEffect(() => {
@@ -58,7 +57,6 @@ const UpdateAPost = () => {
                     <button className="post-btn" type="submit" >Update Post</button>
                 </form>
             </div>
-            <Footer />
         </>
     )
 }

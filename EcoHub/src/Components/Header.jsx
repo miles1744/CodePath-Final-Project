@@ -1,4 +1,5 @@
 import { Link, useOutletContext } from "react-router-dom";
+import Footer from "./Footer.jsx"
 
 const Header = () => {
     
@@ -18,6 +19,7 @@ const Header = () => {
                 <div className="header-links">
                    <Link to={"/Home"}><p>Home</p></Link>
                     <Link to={"/Create"}><p>Create New Post</p></Link>
+                    <Footer/>
                 </div>
             </div>
         </>

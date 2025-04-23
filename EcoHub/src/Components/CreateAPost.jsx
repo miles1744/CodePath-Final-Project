@@ -2,7 +2,6 @@ import { useState } from "react"
 import { Outlet } from 'react-router-dom'
 import "../Css/App.css"
 import { supabase } from "../client.js"
-import Footer from './Footer.jsx';
 
 
 
@@ -28,7 +27,7 @@ const CreateAPost = () => {
             })
             .select();
 
-        window.location = "/"
+        window.location = "/Home"
     }
 
 
@@ -43,7 +42,6 @@ const CreateAPost = () => {
                     <button className="post-btn" type="submit" >Create Post</button>
                 </form>
             </div>
-            <Footer />
         </>
     )
 }

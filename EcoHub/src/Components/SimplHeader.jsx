@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import Footer from "./Footer.jsx";
 
 const SimpleHeader = () => {
     
@@ -11,6 +11,7 @@ const SimpleHeader = () => {
                 <div className="header-links">
                    <Link to={"/Home"}><p>Home</p></Link>
                     <Link to={"/Create"}><p>Create New Post</p></Link>
+                    <Footer/>
                 </div>
             </div>
         </>
