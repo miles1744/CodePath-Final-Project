@@ -25,6 +25,24 @@ const postPage = () =>{
       
         window.location = "/Home";
       }
+
+      const createPost = async (event) => {
+        event.preventDefault();
+      
+        const { data: { user } } = await supabase.auth.getUser();
+      
+         await supabase
+          .from('Posts')
+          .insert({
+            Title: title,
+            post_id: content,
+            user_id: user.id,
+          })
+          .select();
+          
+        window.location.href = '/Home';
+      };
+      
     
 
       useEffect(() => {
