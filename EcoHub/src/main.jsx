@@ -36,7 +36,9 @@ createRoot(document.getElementById('root')).render(
             <Route path="/Update/:id" element={<PrivateRoute><UpdateAPost /></PrivateRoute>}>
               <Route index={true} element={<SimpleHeader />} />
             </Route>
-          
+
+
+          <Route path="/" element={<PrivateRoute><App /></PrivateRoute>} />
 
           <Route path="/signin" element={<SignIn />} />
           
