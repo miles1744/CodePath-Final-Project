@@ -28,9 +28,6 @@ const postPage = () =>{
     
 
       useEffect(() => {
-        if (!post?.id) return;
-        if (!post?.id) return;  // wait until post is loaded
-
         (async () => {
           const { data, error } = await supabase
             .from("Comments")
@@ -43,15 +40,18 @@ const postPage = () =>{
       }, [])
 
       useEffect(() => {
-        const fetchPost = async () => {
-          const { posts_data } = await supabase
-            .from("Posts")
-            .select("*")
-            .eq("id", id)
-            .single();
-          setPost(posts_data);
-        };
-        fetchPost();
+          (async () => {
+            const { data, error } = await supabase
+              .from("Posts")
+              .select("*")
+              .eq("id", id)
+              .single();
+            if (error) console.error(error.message);
+            else {
+              setPost(data);
+              setUpvotes(data.Upvotes || 0);
+            }
+          })();
       }, []);
       
 

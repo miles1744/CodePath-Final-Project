@@ -16,11 +16,9 @@ const CreateAPost = () => {
     const createPost = async (event) => {
         event.preventDefault();
       
-        // Get the current user
         const { data: { user } } = await supabase.auth.getUser();
       
-        // Try inserting
-        const { data: newPost, error } = await supabase
+         await supabase
           .from('Posts')
           .insert({
             Title:   title,
@@ -29,15 +27,8 @@ const CreateAPost = () => {
             Upvotes: 0,
             user_id: user.id,
           })
-          .select();  // returns the inserted row(s)
-      
-        if (error) {
-          console.error('❌ insert error:', error.message);
-          return;  // bail out so you can fix the problem
-        }
-      
-        console.log('✅ post created:', newPost);
-        // navigate instead of full reload
+          .select();
+          
         window.location.href = '/Home';
       };
       
