@@ -277,11 +277,11 @@ img {
 
   .signup-link{
     text-decoration: none;
-    color: inherit;
-    transition: color 0.2s ease;
+    color: #328E6E;
+    font-weight: 600;
   }
 
   .signup-link:hover{
     text-decoration: underline;
-    color: #0077cc;
+    color: #2a6a54;
   }

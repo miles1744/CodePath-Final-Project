@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { Outlet, useParams, Link } from 'react-router-dom'
 import "../Css/App.css"
 import { supabase } from "../client.js"
+import Footer from './Footer.jsx';
+
 
 
 
@@ -56,6 +58,7 @@ const UpdateAPost = () => {
                     <button className="post-btn" type="submit" >Update Post</button>
                 </form>
             </div>
+            <Footer />
         </>
     )
 }

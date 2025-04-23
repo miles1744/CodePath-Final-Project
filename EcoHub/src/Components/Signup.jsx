@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserAuth } from "../context/AuthContext";
 
 const SignUp = () => {
@@ -9,19 +9,51 @@ const SignUp = () => {
     const [loading, setLoading] = useState("");
 
     const {session, signUpNewUser} = UserAuth()
+    const navigate = useNavigate()
     console.log(session)
+
+    const handleSignUp = async (e) =>
+    {
+        e.preventDefault()
+        setLoading(true)
+        try {
+            const result = await signUpNewUser(email, password)
+
+            if(result.success) {
+                navigate("/Home")
+            }
+
+        }
+        catch (err){
+            setError("an error occurred")
+        }
+        finally{
+            setLoading(false)
+        }
+    }
 
     return (
         <div>
-            <form>
+            <form onSubmit={handleSignUp}>
                 <h2> Sign up today!</h2>
                 <p>
                    Already have an account? <Link to={"/signin"} className="signup-link">Sign in!</Link>
                 </p>
 
-                <input placeholder="Email" type="email" />
-                <input placeholder="Password" type="password" />
-                <button type="submit" disabled={loading}>Sign up</button>
+                <input 
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Email" 
+                type="email" 
+                />
+                <input 
+                onChange={(e)=> setPassword(e.target.value)} 
+                placeholder="Password"
+                type="password"
+                />
+                <button type="submit" disabled={loading}>
+                  Sign up
+                </button>
+                {error && <p>{error}</p>}
             </form>
         </div>
     )

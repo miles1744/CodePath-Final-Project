@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { Link, Outlet, useParams } from 'react-router-dom'
 import "../Css/App.css"
 import { supabase } from "../client.js"
+import Footer from './Footer.jsx';
+
 
 const postPage = () =>{
 
@@ -177,6 +179,7 @@ const postPage = () =>{
                     </div>
                     </div>
             </div>
+            <Footer />
         </>
     )
 }

@@ -12,7 +12,6 @@ import SignUp from "./Components/Signup.jsx"
 import { AuthContextProvider } from './context/AuthContext.jsx';
 
 
-
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthContextProvider>
@@ -37,7 +36,7 @@ createRoot(document.getElementById('root')).render(
 
           <Route path="/signin" element={<SignIn />} />
           
-          <Route path="/" element={<SignUp />} />
+          <Route path="/signup" element={<SignUp />} />
 
         </Routes>
       </BrowserRouter>

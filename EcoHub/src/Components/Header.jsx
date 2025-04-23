@@ -16,7 +16,7 @@ const Header = () => {
                 onChange={(e) => setSearchTerm(e.target.value)}
                 />
                 <div className="header-links">
-                   <Link to={"/"}><p>Home</p></Link>
+                   <Link to={"/Home"}><p>Home</p></Link>
                     <Link to={"/Create"}><p>Create New Post</p></Link>
                 </div>
             </div>
