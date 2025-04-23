@@ -19,8 +19,6 @@ const footer = () => {
         }
     }
 
-    console.log(session)
-
     return(
         <div className="footer-container">
             <button onClick={handleSignOut}>Sign Out</button>

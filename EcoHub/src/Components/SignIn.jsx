@@ -33,7 +33,8 @@ const SignIn = () => {
     return (
         <div>
             <form onSubmit={handleSignIn} className="signin-container">
-                <h2> Sign up today!</h2>
+                <h1>Eco Hub</h1>
+                <h2> Sign in today!</h2>
                 <p>
                    Don't have an account? <Link to={"/signup"} className="signup-link">Sign up!</Link>
                 </p>

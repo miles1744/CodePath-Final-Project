@@ -2,6 +2,7 @@ import { useState, useEffect } from "react"
 import { Link, Outlet, useParams } from 'react-router-dom'
 import "../Css/App.css"
 import { supabase } from "../client.js"
+import { UserAuth } from "../context/AuthContext.jsx"
 
 const postPage = () =>{
 
@@ -10,6 +11,9 @@ const postPage = () =>{
     const [comment, setComment] = useState("");
     const [comments, setComments] = useState([]);
     const [upvotes, setUpvotes] = useState(0);
+    const { session } = UserAuth();
+
+    
 
     const deletePost = async (event) => {
         event.preventDefault();
@@ -22,35 +26,34 @@ const postPage = () =>{
         window.location = "/Home";
       }
     
-    const handleAddComment = async (e) => {
-        e.preventDefault();
+
+      useEffect(() => {
+        if (!post?.id) return;
+        if (!post?.id) return;  // wait until post is loaded
+
+        (async () => {
+          const { data, error } = await supabase
+            .from("Comments")
+            .select("*")
+            .eq("post_id", post.id);
+
+          if (error) console.error("Error loading comments:", error.message);
+          else setComments(data || []);
+          })();
+      }, [])
+
+      useEffect(() => {
+        const fetchPost = async () => {
+          const { posts_data } = await supabase
+            .from("Posts")
+            .select("*")
+            .eq("id", id)
+            .single();
+          setPost(posts_data);
+        };
+        fetchPost();
+      }, []);
       
-        const { data: postData, error: fetchError } = await supabase
-          .from("Posts")
-          .select("Comments")
-          .eq("id", id)
-          .single();
-      
-        if (fetchError) {
-          console.error("Failed to fetch latest comments:", fetchError);
-          return;
-        }
-      
-        const currentComments = postData.Comments || [];
-        const updated = [...currentComments, comment];
-      
-        const { error: updateError } = await supabase
-          .from("Posts")
-          .update({ Comments: updated })
-          .eq("id", id);
-      
-        if (!updateError) {
-          setComments(updated);
-          setComment("");
-        } else {
-          console.error("Failed to update comments:", updateError);
-        }
-      };
 
 
       const handleAddUpVote = async (e) => {
@@ -122,18 +125,27 @@ const postPage = () =>{
       };
 
 
-    useEffect(() => {
-        const fetchPost = async () => {
-            const {data} = await supabase
-            .from("Posts")
-            .select()
-            .eq("id", id)
-            .single()
+      useEffect(() => {
+        const fetchComments = async () => {
 
-            setPost(data)
-        }
-        fetchPost()
-    }, [comments])
+          const { data: postData, error: fetchError } = await supabase
+          .from("Posts")
+          .select("Comments")
+          .eq("id", id)
+          .single();
+
+          const { data, error } = await supabase
+            .from("Comments")
+            .select("*")
+            .eq("post_id", postData.id); 
+          setComments(data);
+        };
+        fetchComments();
+      }, []);
+      
+
+
+
 
 
     
@@ -144,11 +156,13 @@ const postPage = () =>{
             <div className="post-page-container">
                 <div className="post-page">
                     <div className="title">
-                    <p>{getFriendlyTimeAgo(post.created_at)}</p>
-                    <div className="button-container">
-                        <Link to={`/Update/${post.id}`}><button className="edit-btn">Edit</button></Link>
-                        <button className="delete-btn" onClick={deletePost}>Delete</button>
-                    </div>
+                    {<p>{(!post?.created_at) ?  <p>Loading…</p> :getFriendlyTimeAgo(post.created_at)}</p>}
+                    {session?.user?.id === post.user_id && (
+                      <div className="button-container">
+                          <Link to={`/Update/${post.id}`}><button className="edit-btn">Edit</button></Link>
+                          <button className="delete-btn" onClick={deletePost}>Delete</button>
+                      </div>
+                    )}
                     </div>
                     <h4>{post.Title}</h4>
                     <p>{post.Content}</p>
@@ -164,14 +178,34 @@ const postPage = () =>{
 
                     <div className="comments-container">
                         {
-                            post.Comments && post.Comments.length > 0 ? post.Comments.map((c, index) => (
-                                <p key={index}>- {c}</p>
+                            comments && comments.length > 0 ? comments.map((c, index) => (
+                                <div className="comment">
+                                  <p key={index}>- {c.text}</p>
+                                  
+                                  <div className="comment-section">
+                                    <svg onClick xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                                    </svg>
+
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                    </svg>
+                                  </div>
+
+                                </div>
                             )):
                             <div>
                             </div>
                         }
-                        <form onSubmit={handleAddComment}>
-                            <input className="input-comment" placeholder="Leave a comment..." type="text" value={comment} onChange={(e) => {setComment(e.target.value)}} />
+                        <form>
+                            <input 
+                            className="input-comment" 
+                            placeholder="Leave a comment..." 
+                            type="text" value={comment} 
+                            onChange={(e) => {setComment(e.target.value)}}
+                            maxLength={145}
+                            />
                             <button className="input-btn" type="submit">Add Comment</button>
                         </form>
                     </div>

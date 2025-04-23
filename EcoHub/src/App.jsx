@@ -53,14 +53,19 @@ function App() {
   
 
   useEffect(() => {
-      const fetchCrewmates = async () => {
-          const {data} = await supabase
+      const fetchPosts = async () => {
+        
+          const {data, error} = await supabase
           .from("Posts")
           .select()
           .order("created_at", { ascending: true })
-          setPosts(data);
-      }
-      fetchCrewmates()
+          if (error) {
+            console.error('⚠️ fetchPosts error:', error.message);
+          } else {
+            console.log('✅ posts fetched:', data);
+            setPosts(data);
+          }      }
+      fetchPosts()
   },[])
 
   useEffect(() => {
