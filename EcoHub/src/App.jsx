@@ -58,7 +58,7 @@ function App() {
           const {data, error} = await supabase
           .from("Posts")
           .select()
-          .order("created_at", { ascending: true })
+          .order("created_at", { ascending: false })
           if (error) {
             console.error('⚠️ fetchPosts error:', error.message);
           } else {
