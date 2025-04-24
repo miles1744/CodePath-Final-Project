@@ -16,7 +16,7 @@ const postPage = () =>{
     
 
     const deletePost = async (event) => {
-        event.preventDefault();
+      event.preventDefault();
       
         await supabase
           .from('Posts')
@@ -27,7 +27,6 @@ const postPage = () =>{
       }
 
       const deleteComment = async (commentId) => {
-        event.preventDefault();
       
         await supabase
           .from('Comments')
@@ -209,7 +208,7 @@ const postPage = () =>{
                         {
                             comments && comments.length > 0 ? comments.map((c, index) => (
                                 <div className="comment">
-                                  <p key={index}>- {c.comment}</p>
+                                  <p key={index}>- {c.comment !== "{}" ? c.comment: ""}</p>
                                   {session?.user?.id === c.user_id && (
                                     <div className="comment-section">
                                       <svg onClick={() => deleteComment(c.id)} xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
