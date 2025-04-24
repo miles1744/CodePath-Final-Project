@@ -1,10 +1,10 @@
-# Web Development Final Project - *Name of App Here*
+# Web Development Final Project - *Eco Hub*
 
-Submitted by: **Your Name Here**
+Submitted by: **Miles Thomas**
 
-This web app: **insert description**
+This web app: **Forum for talking about the environment.**
 
-Time spent: **X** hours spent in total
+Time spent: **30** hours spent in total
 
 ## Required Features
 
